@@ -1,0 +1,29 @@
+<div class="score-card">
+    <h2>Quiz Score</h2>
+    <p>Correct Answers: {{ correctAnswers }}</p>
+    <p>Total Questions: {{ totalQuestions }}</p>
+    <small class="percentage">% {{percentageCorrect}}</small>
+    <br/>
+    <div class="progress-bar">
+        <p><ngb-progressbar type={{colorOfProgressBar}} [value]="percentageCorrect" [striped]="true"></ngb-progressbar></p>
+      </div>
+      <div class="button-container">
+        <br/>
+        <div *ngIf="percentageCorrect < 50"> <h6>You didnt score high enough to earn a spot on our leaderboards.</h6><br/><br/>
+      <button  (click)="takeAnotherQuiz()">Take Another Quiz</button>
+    </div>
+      <div class="form-control" *ngIf="percentageCorrect > 50">
+        <div><h5>Great Job! </h5><br/><h6>You scored high enough to be featured on our leaderboards!</h6></div>
+        <label for="text">Leaderboard Known As</label>
+        <input
+          type="text"
+          name="text"
+          id="text"
+          [(ngModel)]="name"
+          placeholder="Name"
+          maxlength="5"
+        />
+      <button (click)="updateNameForLeaderboards()">Add me to Leaderboards</button>
+    </div>
+    </div>
+  </div>
